@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link href="css/style.css" rel="stylesheet">-->
+    <style>
+        #ca {
+            background: #ccc;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var ca = document.querySelector("#ca");
+            var cg = ca.getContext("2d");
+            var num = 0;
+            var num2 = 0;
+            var value = 1;
+
+            setInterval(function() {
+                num++;
+                cg.save();
+                cg.clearRect(0, 0, ca.width, ca.height);
+                cg.translate(200, 200);
+                num2 += value;
+                if (num2 == 100) {
+                    value = -1;
+                    console.log("s");
+                } else if (num2 == 0) {
+                    value = 1;
+                }
+                cg.scale(num2 * 1 / 50, num2 * 1 / 50);
+                cg.rotate(num * Math.PI / 180);
+                cg.translate(-50, -50);
+                cg.fillRect(0, 0, 100, 100);
+                cg.restore();
+            }, 30);
+
+        };
+    </script>
+</head>
+
+<body>
+    <canvas width="800" height="600" id="ca"></canvas>
+</body>
+
+</html>
